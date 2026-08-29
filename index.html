@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xPlore1</title>
+    <style>
+        /* --- ESTILOS GENERALES & TIPOGRAFÍA --- */
+        :root {
+            --color-fondo: #fcfbf9;
+            --color-texto: #1a1a1a;
+            --color-primario: #8b1e0f; /* Un tono granate/vino muy de revista cultural */
+            --color-secundario: #555555;
+            --color-linea: #e2dfd9;
+            --fuente-titulos: 'Playfair Display', 'Georgia', serif;
+            --fuente-cuerpo: 'Merriweather', 'Georgia', serif;
+            --fuente-interfaz: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            font-family: var(--fuente-cuerpo);
+            line-height: 1.75;
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 740px; /* Ancho ideal para lectura cómoda */
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* --- CABECERA DE LA REVISTA/CURSO --- */
+        header {
+            border-bottom: 2px solid var(--color-texto);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .revista-tag {
+            font-family: var(--fuente-interfaz);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-primario);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        header h1 {
+            font-family: var(--fuente-titulos);
+            font-size: 42px;
+            line-height: 1.1;
+            margin: 0 0 10px 0;
+            font-weight: 400;
+        }
+
+        .meta-datos {
+            font-family: var(--fuente-interfaz);
+            font-size: 14px;
+            color: var(--color-secundario);
+            font-style: italic;
+        }
+
+        /* --- SECCIONES Y TÍTULOS --- */
+        h2 {
+            font-family: var(--fuente-titulos);
+            font-size: 28px;
+            color: var(--color-texto);
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            border-bottom: 1px solid var(--color-linea);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-family: var(--fuente-titulos);
+            font-size: 22px;
+            color: var(--color-primario);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        h4 {
+            font-family: var(--fuente-titulos);
+            font-size: 17px;
+            color: var(--color-primario);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        /* Capitular: Primera letra del primer párrafo destacada */
+        p.introduccion::first-letter {
+            font-family: var(--fuente-titulos);
+            font-size: 75px;
+            line-height: 60px;
+            padding-top: 4px;
+            padding-right: 8px;
+            padding-left: 3px;
+            float: left;
+            color: var(--color-primario);
+        }
+
+        /* --- ENLACES ELEGANTES --- */
+        a {
+            color: #777777;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--color-primario);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--color-primario);
+            border-bottom: 1px solid var(--color-primario);
+            background-color: rgba(139, 30, 15, 0.05);
+        }
+
+        /* --- CITAS TEXTUALES (BLOCKQUOTES) --- */
+        blockquote {
+            margin: 40px 0;
+            padding: 20px 40px;
+            border-left: 3px solid var(--color-primario);
+            font-style: italic;
+            font-size: 20px;
+            color: #333;
+            background-color: rgba(0, 0, 0, 0.01);
+            line-height: 1.6;
+        }
+
+        blockquote cite {
+            display: block;
+            font-family: var(--fuente-interfaz);
+            font-size: 13px;
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-secundario);
+            margin-top: 10px;
+        }
+
+        /* --- IMÁGENES ESTILO EDITORIAL --- */
+        figure {
+            margin: 45px 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 2px;
+        }
+
+        figcaption {
+            font-family: var(--fuente-interfaz);
+            font-size: 13px;
+            color: var(--color-secundario);
+            margin-top: 12px;
+            line-height: 1.4;
+            padding: 0 10px;
+        }
+
+        /* --- TABLAS ESTILO REVISTA --- */
+        .table-container {
+            overflow-x: auto;
+            margin: 40px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--fuente-interfaz);
+            font-size: 15px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+            color: var(--color-texto);
+            border-bottom: 2px solid var(--color-texto);
+            padding: 12px 10px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--color-linea);
+            color: #333;
+        }
+
+        tr:hover td {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        /* --- DETALLES EXTRA (Sugerencias pedagógicas) --- */
+        .nota-destacada {
+            background-color: #f3eff5;
+            border: 1px solid var(--color-linea);
+            padding: 25px;
+            margin: 40px 0;
+            font-family: var(--fuente-cuerpo);
+            font-size: 17px;
+        }
+
+        .nota-destacada h4 {
+            margin-top: 0;
+            font-family: var(--fuente-interfaz);
+            text-transform: uppercase;
+            color: var(--color-primario);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--color-linea);
+            padding-top: 20px;
+            font-family: var(--fuente-interfaz);
+            font-size: 12px;
+            color: var(--color-secundario);
+            text-align: center;
+        }
+        
+        /* --- ESTILOS ADICIONALES PARA LA TABLA DE CONTENIDOS (ÍNDICE) --- */
+        .indice-revista {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .indice-item {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .indice-item a {
+            border-bottom: none;
+            font-family: var(--fuente-cuerpo);
+            color: var(--color-texto);
+            font-weight: bold;
+        }
+
+        .indice-item a:hover {
+            color: var(--color-primario);
+            background-color: transparent;
+        }
+
+        .indice-linea {
+            flex-grow: 1;
+            border-bottom: 1px dotted var(--color-linea);
+            margin: 0 15px;
+        }
+
+        .indice-numero {
+            font-family: var(--fuente-interfaz);
+            font-size: 14px;
+            color: var(--color-secundario);
+        }
+        
+        /* ==========================================================================
+        ADAPTACIÓN RESPONSIVA DEL MENÚ (Mantiene estilo editorial intacto)
+        ========================================================================== */
+
+        .layout-global, .nav-revista {
+            box-sizing: border-box;
+        }
+
+        /* --- COMPORTAMIENTO POR DEFECTO: DISPOSITIVOS MÓVILES --- */
+
+        .nav-revista {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-fondo);
+            border-bottom: 1px solid var(--color-linea);
+            z-index: 1000;
+        }
+
+        .menu-boton {
+            padding: 15px 20px;
+            list-style: none;
+            cursor: pointer;
+            font-family: var(--fuente-interfaz);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primario);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            user-select: none;
+        }
+        
+        .menu-boton::-webkit-details-marker {
+            display: none; /* Oculta flecha en Safari */
+        }
+
+        .menu-enlaces {
+            background-color: var(--color-fondo);
+            padding: 10px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-bottom: 1px solid var(--color-linea);
+        }
+
+        .menu-enlaces .enlace-item a {
+            font-family: var(--fuente-interfaz);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: none; 
+        }
+        
+        .menu-enlaces .enlace-item a:hover {
+            border-bottom: none;
+            background-color: transparent;
+            color: var(--color-texto);
+        }
+
+        /* Agrega un colchón superior al contenedor en móvil para que no se encime la barra */
+        .container {
+            margin-top: 50px;
+        }
+
+        /* --- COMPORTAMIENTO EN COMPUTADORA (Pantallas mayores a 1100px) --- */
+        @media (min-width: 1100px) {
+            
+            .layout-global {
+                display: grid;
+                grid-template-columns: 260px 1fr;
+                width: 100%;
+            }
+
+            .nav-revista {
+                position: sticky;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 260px;
+                border-right: 1px solid var(--color-linea);
+                border-bottom: none;
+                padding: 60px 30px;
+                background-color: var(--color-fondo);
+            }
+
+            .menu-desplegable,
+            .menu-desplegable:not([open]) .menu-enlaces {
+                display: block !important;
+            }
+
+            .menu-boton {
+                display: none !important;
+            }
+
+            .menu-enlaces {
+                display: flex !important;
+                flex-direction: column;
+                gap: 18px;
+                padding: 0;
+                border-bottom: none;
+            }
+
+            .menu-enlaces .enlace-item a {
+                font-size: 13px;
+                color: var(--color-secundario);
+                display: inline-block;
+                border-bottom: 1px dashed transparent;
+            }
+
+            .menu-enlaces .enlace-item a:hover {
+                color: var(--color-primario);
+                border-bottom: 1px solid var(--color-primario);
+                background-color: rgba(139, 30, 15, 0.05);
+            }
+
+            .container {
+                margin-top: 0 !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+        
+        
+        
+        
+        
+        /* --- DISEÑO BASE: MÓVILES (Sin Grid, flujo vertical nativo) --- */
+        .galeria-bloque {
+            margin: 45px 0;
+            width: 100%;
+        }
+
+        .galeria-fila {
+            display: block; /* Las filas se comportan como bloques normales apilados */
+        }
+
+        .galeria-item {
+            margin: 0 0 35px 0; /* Espacio generoso abajo de cada imagen en móvil */
+            padding: 0;
+            width: 100%;
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+            border: 1px solid var(--color-linea);
+        }
+
+        .galeria-item figcaption {
+            font-family: var(--fuente-interfaz);
+            font-size: 13px;
+            color: var(--color-secundario);
+            margin-top: 10px;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        /* --- COMPORTAMIENTO PARA PC (Pantallas mayores a 650px) --- */
+        @media (min-width: 650px) {
+            .galeria-fila {
+                display: flex; /* Activa la alineación horizontal por fila */
+                gap: 24px;     /* Separación elegante entre las dos imágenes */
+                margin-bottom: 24px; /* Separación entre la fila de arriba y la de abajo */
+            }
+
+            .galeria-item {
+                margin-bottom: 0; /* Limpia el margen móvil para usar el gap de la fila */
+                flex: 1;          /* Distribuye el espacio al 50% exacto para cada imagen */
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<div class="layout-global">
+		<!-- Barra de Navegación del proyecto -->
+		<nav class="nav-revista">
+				<!-- El truco sin JavaScript: details sirve como desplegable automático en móvil -->
+				<details class="menu-desplegable" open>
+					<summary class="menu-boton">
+						<span class="icono-menu">☰</span> Menú del Curso
+					</summary>
+					
+					<div class="menu-enlaces">
+						<div class="enlace-item"><a href=""><strong>xPlore 1</strong></a></div>
+                        <div class="enlace-item"><a href="docs/xPlore2.html">xPlore 2</a></div>					
+					</div>
+				</details>
+			</nav>
+
+		<div class="container">
+			<header>
+				<span class="revista-tag">Revisión de fuentes de datos activas</span>
+				<h1>Explora</h1>
+
+			</header>
+			<main>
+           
+            <p style=color:#502525;>Explorar las ligas que se muestran más abajo para corroborar si contienen datos descargables o 
+            solo de consulta sobre magnitudes relacionadas con información de actividades económicas, pobreza, población o recursos naturales y, mencionar 
+            si se encuentran en formatos como text o csv o si se trata de datos geográficos en formatos
+            como shapefilep o tif. Copiar la siguiente tabla a Excel para llenarla con dicha información, además, para aquellos sitios confirmados 
+            como activos ya sea para consulta o descarga, agregarles su referencia en APA 7 mientras que, para aquellos sitios que no contienen 
+            ningún tipo de información descargable ni de consulta o que ya no están activos, solo pegar su Dirección Web en rojo. </p>
+            <p>
+                Una vez llenada la tabla y guardada en formato xlsx haz click en el botón "Enviar tabla llenada" que está al pie de
+                la tabla y adjunta tu .xlsx.
+            </p>
+            
+            
+           <div>
+              <button onclick="copiarTabla()" style="margin-bottom: 10px; padding: 8px 12px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold;">Copiar tabla</button>
+              <br>
+              
+              <table id="tablaDatos" border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; table-layout: fixed;">
+                <thead>
+                  <tr style="background-color: #f2f2f2;text-align:center;">
+                    <th style="font-size: 7px; width: 40%;">Hiperlink &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+                    <th style="font-size: 7px; width: 10%;">Tipo<br>(descarga, solo consulta)</th>
+                    <th style="font-size: 7px; width: 10%;">Formato<br>(txt,shp,etc)</th>
+                    <th style="font-size: 7px; width: 40%;">APA &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <br>
+            <hr>
+            <br>
+             <div>
+                  <a href="mailto:renebec@gmail.com?bcc=alfer.villalobos@gmail.com&subject=Enviar%20tabla%20llena&body=Sitios%20de%20consulta%20y%20descarga%20revisados.%0A%0AAdjunte%20su%20archivo%20formato%20xlsx" style="align:right; display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: sans-serif;">Enviar tabla llena</a>
+            </div>
+            
+         <h4>Ligas a sitios</h4>
+        <section style="background-color:#F3F7B7;color:white;padding:10px;font-size:14px;" class="seccion-ambiental">
+					<h4 style="color:orange">Sitios de consulta y bases de datos de ámbito nacional</h4>
+					<ol style="color:orange">
+						
+						<li><a href="https://www.datos.gob.mx/dataset/?q=inecc&sort=score+desc%2C+metadata_modified+desc" target="_blank">Gobierno de México. 174 bases de datos para INECC.</a></li>
+						<li><a href="https://www.datos.gob.mx/dataset/?q=conagua&sort=score+desc%2C+metadata_modified+desc" target="_blank">Gobierno de México. 16 bases de datos para CONAGUA.</a></li>
+						<li><a href="https://www.datos.gob.mx/dataset/?q=sader&sort=score+desc%2C+metadata_modified+desc" target="_blank">Gobierno de México. 184 bases de datos para SADER.</a></li>
+						<li><a href="https://www.gob.mx/agricultura/dgsiap" target="_blank">DGSIAP</a></li>
+                        <li><a href="http://geoportal.conabio.gob.mx/metadatos/doc/html/degra250kgw.html" target="_blank">CONABIO degrad250</a></li>
+						<li><a href="https://www.datos.gob.mx/dataset/?q=profepa&sort=score+desc%2C+metadata_modified+desc" target="_blank">Gobierno de México. 127 bases de datos para PROFEPA.</a></li>
+						<li><a href="https://www.datos.gob.mx/dataset/?organization=conafor&res_format=CSV&q=conafor" target="_blank">Gobierno de México. 67 bases de datos para CONAFOR.</a></li>
+						<li><a href="https://www.datos.gob.mx/dataset/?q=conanp&sort=score+desc%2C+metadata_modified+desc" target="_blank">Gobierno de México. 9 bases de datos para CONANP.</a></li>
+						<li><a href="https://www.datos.gob.mx/organization/asea" target="_blank">Gobierno de México. 4 bases de datos para ASEA.</a></li>
+						<li><a href="https://apps1.semarnat.gob.mx:8443/dgeia/indicadores15/conjuntob/indicador/03_suelos/3_3.html" target="_blank">SNIARN. Indicadores básicos del desempeño ambiental en México: superficie afectada por degradación edáfica.</a></li>
+						<li><a href="http://www.conabio.gob.mx/informacion/gis/" target="_blank">CONABIO. Geoportal 2026</a></li>
+						<li><a href="http://geoportal.conabio.gob.mx/" target="_blank">CONABIO. Geoportal</a></li>
+                        <li><a href="https://idefor.cnf.gob.mx/interactive/layers" target="_blank">CONAFOR. Geoportal X</a></li>
+                        <li><a href="https://snif.cnf.gob.mx/datos-abiertos/" target="_blank">CONAFOR. Datos abiertos</a></li>
+                        <li><a href="https://snif.cnf.gob.mx/" target="_blank">CONAFOR. SNIF</a></li>                      
+						<li><a href="http://geoportal.conabio.gob.mx/metadatos/doc/html/usv250kcs1agw.html#_stdorder" target="_blank">CONABIO. Metadatos. Uso del suelo y vegetación, escala 1:250000, serie I (continuo nacional)</a></li>
+
+						
+					</ol>
+					
+					<br><br>
+					
+					<h4 style="color:orange">Sitios de consulta y bases de datos de ámbito internacional</h4>
+					<ol style="color:orange">
+                        <li><a href="https://ejatlas.org/" target="_blank">EJAtlas - Global Atlas of Environmental Justice</a></li>
+						<li><a href="https://ict.ipbes.net/ipbes-ict-guide/data-and-knowledge-management/citations-of-ipbes-assessments/land-degradation-assessment" target="_blank">IPBES. Land degradation.</a></li>
+						<li><a href="https://data.worldbank.org/" target="_blank">World Bank Data.</a></li>
+						<li><a href="https://www.unccd.int/data-knowledge" target="_blank">UNCCD Data.</a></li>
+						<li><a href="https://www.globalforestwatch.org/" target="_blank">Global Forest Watch.</a></li>
+						<li><a href="https://www.researchgate.net/publication/352800074_Global_assessment_report_on_biodiversity_and_ecosystem_services_of_the_Intergovernmental_Science-Policy_Platform_on_Biodiversity_and_Ecosystem_Services" target="_blank">IPBES. Global assessment report on biodiversity and ecosystem services.</a></li>
+						
+						
+					</ol>
+				</section>
+            
+            
+            
+            </main>
+            
+		</div>
+    </div>
+              <script>
+                function copiarTabla() {
+                  const tabla = document.getElementById('tablaDatos');
+                  const rango = document.createRange();
+                  rango.selectNode(tabla);
+                  window.getSelection().removeAllRanges();
+                  window.getSelection().addRange(rango);
+                  try {
+                    document.execCommand('copy');
+                    alert('¡Tabla copiada al portapapeles! Ya puedes pegarla en Word.');
+                  } catch (err) {
+                    alert('Error al intentar copiar la tabla.');
+                  }
+                  window.getSelection().removeAllRanges();
+                }
+              </script>
+</body>
+</html>

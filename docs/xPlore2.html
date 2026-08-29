@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xPlore2</title>
+    <style>
+        :root {
+            --color-fondo: #fcfbf9;
+            --color-texto: #1a1a1a;
+            --color-primario: #8b1e0f;
+            --color-secundario: #555555;
+            --color-linea: #e2dfd9;
+            --fuente-titulos: 'Playfair Display', 'Georgia', serif;
+            --fuente-cuerpo: 'Merriweather', 'Georgia', serif;
+            --fuente-interfaz: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            font-family: var(--fuente-cuerpo);
+            line-height: 1.75;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .layout-global {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            border-bottom: 2px solid var(--color-texto);
+            padding-bottom: 20px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: var(--fuente-titulos);
+            font-size: 28px;
+            color: var(--color-texto);
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            border-bottom: 1px solid var(--color-linea);
+            padding-bottom: 8px;
+        }
+
+        h3, h4, h5 {
+            font-family: var(--fuente-titulos);
+            color: var(--color-primario);
+            font-weight: 400;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        a {
+            color: #777777;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--color-primario);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--color-primario);
+            border-bottom: 1px solid var(--color-primario);
+            background-color: rgba(139, 30, 15, 0.05);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        .nav-revista {
+            background-color: var(--color-fondo);
+            border-bottom: 1px solid var(--color-linea);
+        }
+
+        .menu-boton {
+            padding: 15px 20px;
+            list-style: none;
+            cursor: pointer;
+            font-family: var(--fuente-interfaz);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primario);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            user-select: none;
+        }
+        
+        .menu-boton::-webkit-details-marker {
+            display: none;
+        }
+
+        .menu-enlaces {
+            background-color: var(--color-fondo);
+            padding: 10px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-bottom: 1px solid var(--color-linea);
+        }
+
+        .menu-enlaces .enlace-item a {
+            font-family: var(--fuente-interfaz);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: none;
+        }
+
+        /* --- ESCRITORIO (>= 1100px) --- */
+        @media (min-width: 1100px) {
+            .layout-global {
+                display: grid;
+                grid-template-columns: 260px 1fr;
+            }
+
+            .nav-revista {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                border-right: 1px solid var(--color-linea);
+                border-bottom: none;
+                padding: 60px 30px;
+                box-sizing: border-box;
+            }
+
+            .menu-desplegable,
+            .menu-desplegable:not([open]) .menu-enlaces {
+                display: block !important;
+            }
+
+            .menu-boton {
+                display: none !important;
+            }
+
+            .menu-enlaces {
+                display: flex !important;
+                padding: 0;
+                border-bottom: none;
+                gap: 18px;
+            }
+
+            .menu-enlaces .enlace-item a {
+                font-size: 13px;
+                color: var(--color-secundario);
+                display: inline-block;
+            }
+
+            .menu-enlaces .enlace-item a:hover {
+                color: var(--color-primario);
+                border-bottom: 1px solid var(--color-primario);
+                background-color: rgba(139, 30, 15, 0.05);
+            }
+
+            .container {
+                margin: 0 auto;
+                padding: 60px 60px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="layout-global">
+        <!-- Barra de Navegación -->
+        <nav class="nav-revista">
+            <details class="menu-desplegable" open>
+                <summary class="menu-boton">
+                    <span class="icono-menu">☰</span> Menú del Curso
+                </summary>
+                <div class="menu-enlaces">
+                    <div class="enlace-item"><a href="../index.html">xPlore 1</a></div>
+                    <div class="enlace-item"><a href=""><strong>xPlore 2</strong></a></div>                    
+                </div>
+            </details>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <main class="container">
+            <h4>Revisión bibliográfica:</h4>
+            <p>
+                Con base en el formato de revisión y registro que se muestra más abajo, diseña una hoja .xlsx, y para cada uno de los siguientes documentos,
+                registra lo que se señala en dicho formato. Guarda la información obtenida en formato xlsx.
+            </p>
+            <p>
+                Si se te facilita, puedes en su lugar diseñar un formulario de captura en <i>google FORMS</i> basado en el formato aquí mostrado y llenarlo con la 
+                información. Una de las ventajas de <i>google FORMS</i> es que almacenará la información en un a hoja de <i>google sheets</i> para una mejor administración de la información.
+            </p>
+            
+            <p>
+                Una vez obtenida la información presiona el botón <i>Enviar información</i> adjuntando el archivo .xlsx o, en su lugar,
+                compartiendo la liga del <i>google FORMS</i> o del archivo <i>google sheets</i>.</i>
+            </p>
+            
+            <ol>
+            
+                <li><a href="https://www.redalyc.org/pdf/539/53905501.pdf" target="_blank">Sen, A. (2000). El desarrollo como libertad. Gaceta Ecológica, (55), 14–20. http://www.redalyc.org/articulo.oa?id=53905501</a></li>
+                <li><a href="https://economie.esg.uqam.ca/wp-content/uploads/sites/54/2020/11/Barbier_Edward_Nov2020.pdf" target="_blank">Barbier, E. B. (2021). The evolution of economic views on natural resource scarcity. Review of Environmental Economics and Policy, 15(1).</a></li>
+                <li><a href="https://www.dicemodel.org/_files/ugd/66d8d1_750474e152bd474d883fd33dc0d23f95.pdf" target="_blank">Nordhaus, W. (2013). Integrated economic and climate modeling. En P. B. Dixon & D. W. Jorgenson (Eds.), Handbook of Computable General Equilibrium Modeling (pp. 1069–1131). Elsevier. https://doi.org/10.1016/B978-0-444-59568-3.00016-X</a></li>
+                <li><a href="https://www.kwilliam-kapp.de/documents/SCOPE.pdf" target="_blank">Kapp, K. W. (1975). The social costs of private enterprise. Schocken Books. (Trabajo original publicado en 1950)</a></li>
+                <li><a href="https://www.redalyc.org/articulo.oa?id=50912885005" target="_blank">Gudynas, E. (2010). La ecología política de la crisis global y los límites del capitalismo benévolo. Íconos. Revista de Ciencias Sociales, (36), 53–67. http://www.redalyc.org/articulo.oa?id=50912885005</a></li>
+                <li><a href="https://www.researchgate.net/publication/303678528_Aventuras_de_la_Epistemologia_Ambiental" target="_blank">Leff, E. (2006). Aventuras de la epistemología ambiental: De la articulación de ciencias al diálogo de saberes. Siglo XXI Editores</a></li>
+                <li><a href="https://www.researchgate.net/publication/290152629_Pobreza_y_desarrollo_sustentable_en_la_gobernanza_ambiental_en_America_Latina" target="_blank">Sejenovich, H. (Coord.). (2015). Pobreza y desarrollo sustentable en la gobernanza ambiental en América Latina. CLACSO; ENGOV. http://biblioteca.clacso.edu.ar</a></li>
+                <li><a href="https://www.researchgate.net/publication/233808811_Desarrollo_a_Escala_Humana_Una_opcion_para_el_futuro" target="_blank">Max-Neef, M., Elizalde, A., y Hopenhayn, M. (1986). Desarrollo a escala humana: Una opción para el futuro. CEPAUR; Fundación Dag Hammarskjöld.</a></li>
+            </ol>
+            <br>
+            
+            <h4>Ficha de revisón y registro</h4>
+            <div style="border: 1px solid #d1d5db; padding: 20px; border-radius: 8px; font-family: Arial, sans-serif; max-width: 650px; background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="margin-top: 0; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px;">Ficha de Trabajo / Contenido (APA 7)</h3>
+            
+            <!-- Campo para la Referencia APA -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #4b5563; display: block; margin-bottom: 5px; font-size: 14px;">Referencia (APA 7):</label>
+                <input type="text" placeholder="referencia completa APA" style="width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; font-size: 14px;">
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 15px 0;">
+            
+            <!-- Cuadro de texto para Ideas Clave -->
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; color: #2563eb; display: block; margin-bottom: 5px; font-size: 14px;">Ideas Clave / Resumen:</label>
+                <textarea placeholder="Escribe aquí las ideas principales, conceptos o hallazgos relevantes de la obra..." style="width: 100%; height: 100px; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; font-family: Arial, sans-serif; font-size: 14px; resize: vertical;"></textarea>
+            </div>
+            
+            <!-- Cuadro de texto para Cita Textual -->
+            <div style="margin-bottom: 0;">
+                <label style="font-weight: bold; color: #4b5563; display: block; margin-bottom: 5px; font-size: 13px;">Cita textual destacada (con página):</label>
+                <textarea placeholder="&quot;Copia aquí una frase exacta del texto...&quot; (p. XX)" style="width: 100%; height: 70px; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; font-family: Arial, sans-serif; font-size: 13px; resize: vertical; background-color: #f9fafb;"></textarea>
+            </div>
+        </div>
+        <br>
+        <br>
+        
+         <div>
+                  <a href="mailto:renebec@gmail.com?bcc=alfer.villalobos@gmail.com&subject=Enviar%20tabla%20llena&body=Sitios%20de%20consulta%20y%20descarga%20revisados.%0A%0AAdjunte%20su%20archivo%20formato%20xlsx" style="align:right; display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: sans-serif;">Enviar información</a>
+        </div>
+               
+        </main>
+    </div>
+    
+    
+
+</body>
+</html>
